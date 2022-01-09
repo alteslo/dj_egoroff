@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from datetime import datetime
 
 
 # Create your views here.
+
+def get_info_about_zodiac_sign(request, sign_zodiac):
+    now = datetime.now().strftime("%A, %d %B, %Y at %X")
+    return HttpResponse(f'текущее время {sign_zodiac} {now}')
+
+
 def leo(request):
     return HttpResponse(
         'Лев - пятый знак зодиака, солнце (с 23 июля по 21 августа).'
