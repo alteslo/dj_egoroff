@@ -15,7 +15,7 @@ def week_days_list_to_do(request, week_day):
     }
     to_do_list = week_days_to_do_list.get(week_day)
     if to_do_list is not None:
-        to_do = '\n'.join(to_do_list)
+        to_do = '\n'.join(map(str, to_do_list))
         return HttpResponse(to_do)
     else:
         return HttpResponseNotFound('Такого дня недели не существует')
