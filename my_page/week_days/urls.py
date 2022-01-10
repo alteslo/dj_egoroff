@@ -4,6 +4,5 @@ from . import views
 
 
 urlpatterns = [
-    path('monday/', views.monday),
-    path('tuesday/', views.tuesday)
+    path('<week_day>', views.week_days_list_to_do)
 ]
