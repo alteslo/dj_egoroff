@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Create your views here.
 
-def get_info_about_zodiac_sign(request, sign_zodiac):
+def get_info_about_zodiac_sign(request, sign_zodiac: str):
     now = datetime.now().strftime("%A, %d %B, %Y at %X")
     sign_zodiac_dict = {
         'leo': 'Лев - пятый знак зодиака, солнце (с 23 июля по 21 августа).',
@@ -28,7 +28,7 @@ def get_info_about_zodiac_sign(request, sign_zodiac):
                   'планеты Юпитер (с 20 февраля по 20 марта).'
     }
     sign = sign_zodiac_dict.get(sign_zodiac)
-    if sign is not None:
+    if sign:
         return HttpResponse(sign)
     else:
         return HttpResponseNotFound(f'Такого знака ({sign_zodiac}) нет на {now}')

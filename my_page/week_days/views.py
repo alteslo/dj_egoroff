@@ -19,3 +19,11 @@ def week_days_list_to_do(request, week_day):
         return HttpResponse(to_do)
     else:
         return HttpResponseNotFound('Такого дня недели не существует')
+
+
+def today_day(request, week_day: int):
+    num_day_numbers = (1, 2, 3, 4, 5, 6, 7)
+    if week_day in num_day_numbers:
+        return HttpResponse(f'Сегодня {week_day} день недели')
+    else:
+        return HttpResponseNotFound(f'Неверный номер дня - {week_day}')
