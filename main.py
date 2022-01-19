@@ -1,19 +1,21 @@
 import requests
-
 from bs4 import BeautifulSoup
+import string
 
-url = 'https://www.imdb.com/title/tt0068646/'
-if 'www.imdb.com/title' not in url:
-    print('Invalid movie page!')
-else:
-    movi_description = {}
-    response = requests.get(url, headers={'Accept-Language': 'en-US,en;q=0.5'}).content
-    soup = BeautifulSoup(response, 'html.parser')
+inp_url = 'https://www.nature.com/nature/articles?sort=PubDate&year=2020&page=3'
+response = requests.get(inp_url)
+page_content = response.content
+status = response.status_code
+soup = BeautifulSoup(page_content, 'html.parser')
 
-    h_link = soup.find('h1', "TitleHeader__TitleText-sc-1wu6n3d-0")
-    movi_description["title"] = h_link.text
+tag_titles = soup.find_all('span', "c-meta__type")
 
-    h_link = soup.find('span', "GenresAndPlot__TextContainerBreakpointXL-sc-cum89p-2")
-    movi_description["description"] = h_link.text
-
-    print(movi_description)
+for tag_title in tag_titles:
+    if 'News' in tag_title.get_text():
+        title = tag_title.find_previous('h3').get_text().strip().replace(' ', '_')
+        for i in string.punctuation:
+            if i in title:
+        news_text = tag_title.find_previous('p').get_text().strip()
+        print(string.punctuation.split())
+        '''with open(f'{title}.txt', 'w') as file:
+            file.write(news_text)'''
