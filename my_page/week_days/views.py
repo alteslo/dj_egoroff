@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 # Create your views here.
@@ -21,9 +23,15 @@ def week_days_list_to_do(request, week_day):
         return HttpResponseNotFound('Такого дня недели не существует')
 
 
-def today_day(request, week_day: int):
-    num_day_numbers = (1, 2, 3, 4, 5, 6, 7)
-    if week_day in num_day_numbers:
-        return HttpResponse(f'Сегодня {week_day} день недели')
+def today_day(request, num_day: int):
+    week_days = [
+        'monday', 'tuesday', 'wednesday', 'thursday',
+        'friday', 'saturday', 'sunday'
+        ]
+
+    if num_day in range(1, 8):
+        day = week_days[num_day - 1]
+        redirect_url = reverse('number-day', args=(day, ))
+        return HttpResponseRedirect(redirect_url)
     else:
-        return HttpResponseNotFound(f'Неверный номер дня - {week_day}')
+        return HttpResponseNotFound(f'Неверный номер дня - {num_day}')
