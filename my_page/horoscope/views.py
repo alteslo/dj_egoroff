@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
-from datetime import datetime
+
+from collections import namedtuple
+
+
+Type_zodiac = namedtuple('Type_zodiac', 'zodiacs')
+fire = Type_zodiac('fire', ['aries', 'leo', 'sagittarius'])
+print(fire)
 
 
 # Create your views here.
-
 def get_info_about_zodiac_sign(request, sign_zodiac: str):
-    now = datetime.now().strftime("%A, %d %B, %Y at %X")
     sign_zodiac_dict = {
         'leo': 'Лев - пятый знак зодиака, солнце (с 23 июля по 21 августа).',
         'scorpio': 'Скорпион - восьмой знак зодиака, планета Марс (с 24 октября по 22 ноября).',
@@ -32,3 +36,7 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
         return HttpResponse(sign)
     else:
         return HttpResponseNotFound(f'Такого знака ({sign_zodiac}) нет на {now}')
+
+
+def get_info_about_zodiac_types(request, type):
+    pass
