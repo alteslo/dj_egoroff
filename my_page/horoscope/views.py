@@ -4,9 +4,9 @@ from django.http import HttpResponse, HttpResponseNotFound
 from collections import namedtuple
 
 
-Type_zodiac = namedtuple('Fire_type', 'zodiacs')
-fire = Type_zodiac(['aries', 'leo', 'sagittarius'])
-print(fire)
+Type_zodiac = namedtuple('Type_zodiac', 'type zodiacs')
+fire = Type_zodiac('fire', ['aries', 'leo', 'sagittarius'])
+print(fire.zodiacs)
 
 
 # Create your views here.
