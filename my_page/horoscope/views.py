@@ -4,8 +4,8 @@ from django.http import HttpResponse, HttpResponseNotFound
 from collections import namedtuple
 
 
-Type_zodiac = namedtuple('Type_zodiac', 'zodiacs')
-fire = Type_zodiac('fire', ['aries', 'leo', 'sagittarius'])
+Type_zodiac = namedtuple('Fire_type', 'zodiacs')
+fire = Type_zodiac(['aries', 'leo', 'sagittarius'])
 print(fire)
 
 
@@ -35,7 +35,7 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     if sign:
         return HttpResponse(sign)
     else:
-        return HttpResponseNotFound(f'Такого знака ({sign_zodiac}) нет на {now}')
+        return HttpResponseNotFound(f'Такого знака ({sign_zodiac}) нет на ')
 
 
 def get_info_about_zodiac_types(request, type):
