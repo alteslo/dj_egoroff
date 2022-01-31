@@ -81,7 +81,7 @@ def get_info_about_my_zodiac(request, month, day):
         (1, 2): Zodiac({1: (21, 31), 2: (1, 19)}, 'aquarius'),
         (2, 3): Zodiac({2: (21, 29), 3: (1, 20)}, 'pisces')
     }
-    if month in range(1,13):
+    if month in range(1, 13):
         for monthes in zodiac_info.keys():
             if month in monthes:
                 zodiac = zodiac_info.get(monthes)
