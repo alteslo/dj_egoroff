@@ -38,8 +38,11 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
                   'планеты Юпитер (с 20 февраля по 20 марта).'
     }
     sign = sign_zodiac_dict.get(sign_zodiac)
+    data = {
+        'info_zodiac': sign
+    }
     if sign:
-        return HttpResponse(sign)
+        return render(request, r'horoscope\main_info.html', context=data)
     else:
         return HttpResponseNotFound(f'Такого знака ({sign_zodiac}) нет')
 
